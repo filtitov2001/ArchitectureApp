@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="08U-uq-c9o">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Courses-->
+        <scene sceneID="yyP-qd-G70">
+            <objects>
+                <viewController id="1D1-ym-RYM" customClass="CourseListViewController" customModule="ArchitectureApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Np-Vg-x1W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GNw-Oy-Vde">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="ikr-Km-AjH" customClass="CourseTableViewCell" customModule="ArchitectureApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ikr-Km-AjH" id="3at-Vb-Rry">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1D1-ym-RYM" id="mMn-zh-zdH"/>
+                                    <outlet property="delegate" destination="1D1-ym-RYM" id="btI-Ih-GDB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jKm-xw-0Rj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GNw-Oy-Vde" firstAttribute="top" secondItem="2Np-Vg-x1W" secondAttribute="top" id="7Bc-SC-46H"/>
+                            <constraint firstItem="GNw-Oy-Vde" firstAttribute="leading" secondItem="jKm-xw-0Rj" secondAttribute="leading" id="KNA-Kx-CNi"/>
+                            <constraint firstAttribute="bottom" secondItem="GNw-Oy-Vde" secondAttribute="bottom" id="aA6-6X-ZyL"/>
+                            <constraint firstItem="GNw-Oy-Vde" firstAttribute="trailing" secondItem="jKm-xw-0Rj" secondAttribute="trailing" id="w5p-1x-hVp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Courses" id="E5C-2A-IDz"/>
+                    <connections>
+                        <outlet property="tableView" destination="GNw-Oy-Vde" id="u0u-Vh-N7M"/>
+                        <segue destination="cno-kr-i8S" kind="show" identifier="ShowDetail" id="frW-QS-jht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rp8-aG-7GZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="-72.321428571428569"/>
+        </scene>
+        <!--Course Detail View Controller-->
+        <scene sceneID="rve-F9-BbC">
+            <objects>
+                <viewController id="cno-kr-i8S" customClass="CourseDetailViewController" customModule="ArchitectureApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s4g-Uk-9hP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gsd-Kn-gD1">
+                                <rect key="frame" x="81" y="111" width="158" height="158.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gsd-Kn-gD1" secondAttribute="height" multiplier="1:1" id="tw2-lv-Gdp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="14W-xA-R7v">
+                                <rect key="frame" x="16" y="299.5" width="288" height="32.5"/>
+                                <fontDescription key="fontDescription" name="KhmerSangamMN" family="Khmer Sangam MN" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="DE4-wA-oZE">
+                                <rect key="frame" x="16" y="412" width="288" height="69"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of lessons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-pc-Nc9">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of tests" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWO-Ym-CUE">
+                                        <rect key="frame" x="0.0" y="48.5" width="288" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvj-Pr-Gey">
+                                <rect key="frame" x="219" y="245.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0s0-Tx-imq"/>
+                                    <constraint firstAttribute="width" constant="40" id="q8N-4E-LP1"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" systemColor="systemGray5Color"/>
+                                    <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25" scale="large" weight="black"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleFavorite:" destination="cno-kr-i8S" eventType="touchUpInside" id="Q8N-0D-Efq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="apZ-rh-ISR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="14W-xA-R7v" firstAttribute="top" secondItem="gsd-Kn-gD1" secondAttribute="bottom" constant="30" id="0dt-gt-w12"/>
+                            <constraint firstItem="Qvj-Pr-Gey" firstAttribute="leading" secondItem="gsd-Kn-gD1" secondAttribute="trailing" constant="-20" id="1lT-Wr-Lf0"/>
+                            <constraint firstItem="14W-xA-R7v" firstAttribute="leading" secondItem="apZ-rh-ISR" secondAttribute="leading" constant="16" id="GYs-sq-k9c"/>
+                            <constraint firstItem="gsd-Kn-gD1" firstAttribute="centerX" secondItem="s4g-Uk-9hP" secondAttribute="centerX" id="Krs-xo-aAN"/>
+                            <constraint firstItem="DE4-wA-oZE" firstAttribute="centerX" secondItem="s4g-Uk-9hP" secondAttribute="centerX" id="M7O-yY-QFZ"/>
+                            <constraint firstItem="gsd-Kn-gD1" firstAttribute="top" secondItem="apZ-rh-ISR" secondAttribute="top" constant="20" id="QnW-K3-T3x"/>
+                            <constraint firstItem="DE4-wA-oZE" firstAttribute="leading" secondItem="apZ-rh-ISR" secondAttribute="leading" constant="16" id="Tcg-xf-C91"/>
+                            <constraint firstItem="Qvj-Pr-Gey" firstAttribute="top" secondItem="gsd-Kn-gD1" secondAttribute="bottom" constant="-24" id="Vc0-mx-Qn3"/>
+                            <constraint firstItem="apZ-rh-ISR" firstAttribute="trailing" secondItem="DE4-wA-oZE" secondAttribute="trailing" constant="16" id="bb9-AT-X17"/>
+                            <constraint firstItem="gsd-Kn-gD1" firstAttribute="height" secondItem="s4g-Uk-9hP" secondAttribute="height" multiplier="0.279018" id="beY-Ga-QcC"/>
+                            <constraint firstItem="DE4-wA-oZE" firstAttribute="top" secondItem="14W-xA-R7v" secondAttribute="bottom" constant="80" id="o63-if-b0T"/>
+                            <constraint firstItem="apZ-rh-ISR" firstAttribute="trailing" secondItem="14W-xA-R7v" secondAttribute="trailing" constant="16" id="vbi-up-40a"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eFG-oj-rr9"/>
+                    <connections>
+                        <outlet property="courseImage" destination="gsd-Kn-gD1" id="afs-rc-udH"/>
+                        <outlet property="courseNameLabel" destination="14W-xA-R7v" id="nCD-rF-aXf"/>
+                        <outlet property="favoriteButton" destination="Qvj-Pr-Gey" id="vPD-ik-2Zb"/>
+                        <outlet property="numberOfLessonsLabel" destination="6cB-pc-Nc9" id="SzB-RE-cTn"/>
+                        <outlet property="numberOfLessonsTests" destination="mWO-Ym-CUE" id="4c2-h2-vZg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X1g-xx-lHv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1898.5507246376812" y="-72.991071428571431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2rM-bk-Jq6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="08U-uq-c9o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="JBR-co-8I8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1D1-ym-RYM" kind="relationship" relationship="rootViewController" id="Oi3-Hh-glv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xqP-39-o29" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="-72.321428571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
