@@ -15,8 +15,7 @@ protocol CourseDetailsViewModelProtocol {
     var numberOfTests: String  { get }
     var imageData: Data? { get }
     
-    var isFavorite: Bool { get }
-    var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)? { get set }
+    var isFavorite: Box<Bool> { get }
     
     init(course: Course)
     
@@ -41,27 +40,19 @@ class CourseDetailsViewModel: CourseDetailsViewModelProtocol {
         ImageManager.shared.fetchImageData(from: course.imageUrl)
     }
     
-    var isFavorite: Bool {
-        get {
-            DataManager.shared.getFavoriteStatus(for: course.name)
-        }
-        
-        set {
-            DataManager.shared.setFavoriteStatus(for: course.name, with: newValue)
-            viewModelDidChange?(self)
-        }
-    }
+    var isFavorite: Box<Bool>
     
-    var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)?
     
     private let course: Course
     
     required init(course: Course) {
+        isFavorite = Box(DataManager.shared.getFavoriteStatus(for: course.name))
         self.course = course
     }
     
     func favoriteButtonPressed() {
-        isFavorite.toggle()
+        isFavorite.value.toggle()
+        DataManager.shared.setFavoriteStatus(for: course.name, with: isFavorite.value)
     }
     
 }

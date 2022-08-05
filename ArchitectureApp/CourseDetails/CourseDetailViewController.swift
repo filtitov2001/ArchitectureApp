@@ -31,10 +31,10 @@ class CourseDetailViewController: UIViewController {
     }
     
     private func setupUI() {
-        setStatusForFavoriteButton(viewModel.isFavorite)
+        setStatusForFavoriteButton(viewModel.isFavorite.value)
         
-        viewModel.viewModelDidChange = { [weak self] viewModel in
-            self?.setStatusForFavoriteButton(viewModel.isFavorite)
+        viewModel.isFavorite.bind { [weak self] isFavorite in
+            self?.setStatusForFavoriteButton(isFavorite)
         }
         
         courseNameLabel.text = viewModel.courseName
