@@ -14,31 +14,28 @@ class CourseListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView?
-    private var courses: [Course] = []
+    private var viewModel: CourseListViewModelProtocol! {
+        didSet {
+            viewModel.fetchCourses {
+                self.activityIndicator?.stopAnimating()
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = CourseListViewModel()
         
         tableView.rowHeight = 100
         activityIndicator = showActivityIndicator(in: view)
         
         setupNavigationBar()
-        getCourses()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailVC = segue.destination as? CourseDetailViewController else { return }
-        detailVC.course = sender as? Course
-    }
-    
-    private func getCourses() {
-        NetworkManager.shared.fetchData { courses in
-            self.courses = courses
-            DispatchQueue.main.async {
-                self.activityIndicator?.stopAnimating()
-                self.tableView.reloadData()
-            }
-        }
+        detailVC.viewModel = sender as? CourseDetailsViewModelProtocol
     }
     
     private func setupNavigationBar() {
@@ -73,7 +70,7 @@ class CourseListViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension CourseListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        courses.count
+        viewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,8 +79,7 @@ extension CourseListViewController: UITableViewDataSource {
                 as? CourseTableViewCell
         else { return UITableViewCell() }
         
-        let course = courses[indexPath.row]
-        cell.configure(with: course)
+        cell.viewModel = viewModel.cellViewModel(at: indexPath)
         
         return cell
     }
@@ -94,8 +90,8 @@ extension CourseListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let course = courses[indexPath.row]
-        performSegue(withIdentifier: "ShowDetail", sender: course)
+        let detailsViewModel = viewModel.detailsViewModel(at: indexPath)
+        performSegue(withIdentifier: "ShowDetail", sender: detailsViewModel)
     }
 }
 
